@@ -1,0 +1,15 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+use Config::Abstract::Ini;
+my($original,$target) = @ARGV;
+print("--------------------------------------------- Instantiating -----\n");
+my $abstract = Config::Abstract::Ini->new($original);
+my $diffabstract = Config::Abstract::Ini->new($target);
+print("--------------------------------------------------- Diffing -----\n");
+my $diff = $abstract->diff($diffabstract);
+print("-------------------------------------------- Diff structure -----\n$diff\n");
+
+bless($diff,"Config::Abstract");
+print("---------- Diff structure in Config::Abstract serialisation -----\n$diff\n");
