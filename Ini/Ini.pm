@@ -137,7 +137,7 @@ Config::Abstract::Ini - Perl extension for handling ini style files
 =head1 SYNOPSIS
 
  use Config::Abstract::Ini;
- my $ini = new Config::Abstract::Ini('test.ini');
+ my $ini = new Config::Abstract::Ini('testdata.ini');
 
 =head1 DESCRIPTION
 
@@ -156,7 +156,7 @@ Config::Abstract::Ini - Perl extension for handling ini style files
 
 =head1 EXAMPLES
 
- We assume the content of the file 'test.ini' to be:
+ We assume the content of the file 'testdata.ini' to be:
  [myentry]
  ;comment
  thisssetting = that
@@ -165,7 +165,7 @@ Config::Abstract::Ini - Perl extension for handling ini style files
  
  
  use Config::Abstract::Ini;
- my $settingsfile = 'test.ini';
+ my $settingsfile = 'testdata.ini';
  my $settings = new Config::Abstract::Ini($Settingsfile);
  
  # Get all settings
@@ -247,7 +247,7 @@ Set the setting ENTRYNAME,SETTINGSNAME to VALUE
 
 =head1 COPYRIGHT
 
-Copyright 2003 Eddie Olsson.
+Copyright (c) 2003 Eddie Olsson. All rights reserved.
 
  This library is free software; you can redistribute it
  and/or modify it under the same terms as Perl itself.

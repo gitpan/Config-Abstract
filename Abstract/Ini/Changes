@@ -1,6 +1,0 @@
-Revision history for Perl extension Config::Abstract::Ini.
-
-0.09  Wed Jan 29 16:44:38 2003
-	- original version; created from Configfile::Ini
-0.10 Thu Jan 30 11:10:42 2003
-	- Cleaned up docs

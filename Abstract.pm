@@ -16,7 +16,7 @@ our %EXPORT_TAGS = ( 'all' => [ qw( ) ] );
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT = qw( );
 
-our $VERSION = '0.11';
+our $VERSION = '0.12';
 
 #
 # ------------------------------------------------------------------------------------------------------- structural methods -----
@@ -178,6 +178,10 @@ sub diff {
 #%returns: Nothing
 sub patch {
 	my($self,$patch) = @_;
+	my %patch_pathed = $self->_pathalise_object( '',$patch->{_settings} );
+	while( my($k,$v) = each(%patch_pathed) ) {
+		$self->set($k,$v);
+	}	
 }
 
 
@@ -311,7 +315,7 @@ Config::Abstract - Perl extension for abstracting configuration files
 =head1 SYNOPSIS
 
  use Config::Abstract;
- my $ini = new Config::Abstract('test.pl');
+ my $ini = new Config::Abstract('testdata.pl');
 
 =head1 DESCRIPTION
 
@@ -322,7 +326,7 @@ Config::Abstract - Perl extension for abstracting configuration files
  
 =head1 EXAMPLES
 
- We assume the content of the file 'test.pl' to be:
+ We assume the content of the file 'testdata.pl' to be:
  
   $settings = {
     'book' => {
@@ -340,7 +344,7 @@ Config::Abstract - Perl extension for abstracting configuration files
   };
 
  use Config::Abstract;
- my $settingsfile = 'test.pl';
+ my $settingsfile = 'testdata.pl';
  my $abstract = new Config::Abstract($settingsfile);
  
  my %book = $abstract->get_entry('book');
@@ -363,17 +367,25 @@ Config::Abstract - Perl extension for abstracting configuration files
 
 Returns a hash of all settings found in the processed file
 
+=item get ENTRYPATH
+
+Returns the setting at the given 'path' where the path divider is '//'.
+
 =item get_entry ENTRYNAME
 
-Returns a hash of the settings within the entry ENTRYNAME
+Returns a hash of the settings within the entry ENTRYNAME. OBSOLETE, use get instead
 
 =item get_entry_setting ENTRYNAME,SETTINGNAME [,DEFAULTVALUE]
 
-Returns the value corresponding to ENTRYNAME,SETTINGSNAME. If the value isn't set it returns undef or, optionally, the DEFAULTVALUE
+Returns the value corresponding to ENTRYNAME,SETTINGSNAME. If the value isn't set it returns undef or, optionally, the DEFAULTVALUE. OBSOLETE, use get instead
 
 =item set_all_settings SETTINGSHASH
 
 Fill settings with data from SETTINGSHASH
+
+=item set ENTRYPATH VALUE
+
+Setting the entry at the given 'path', where the path divider is '//', to VALUE.
 
 =item set_entry ENTRYNAME,ENTRYHASH
 
@@ -383,9 +395,17 @@ Fill the entry ENTRYNAME with data from ENTRYHASH
 
 Set the setting ENTRYNAME,SETTINGSNAME to VALUE
 
+=item diff OBJECT
+
+Returns an object of type Config::Abstract that is a representation of the values in this object that needs altering to make it identical to OBJECT
+
+=item patch OBJECT
+
+Sets the entries in this object to whatever they are in OBJECT, creating entries as necessary. $obj_a->patch( $obj_a->diff( $obj_b ) ); should make $obj_a identical to $obj_b except for entries in obj_a that don't exist in $obj_b.
+
 =head1 COPYRIGHT
 
-Copyright 2003 Eddie Olsson.
+Copyright (c) 2003 Eddie Olsson. All rights reserved.
 
  This library is free software; you can redistribute it
  and/or modify it under the same terms as Perl itself.

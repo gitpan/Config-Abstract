@@ -4,15 +4,15 @@ Makefile.PL
 MANIFEST
 MANIFEST.SKIP
 README
-test.pl
+testdata.pl
 test
 Ini/Changes
 Ini/Ini.pm
 Ini/MANIFEST
 Ini/README
 Ini/Makefile.PL
-Ini/diff
-Ini/test.ini
+Ini/inidiff
+Ini/testdata.ini
 Ini/test2.ini
 Ini/test.pl
 

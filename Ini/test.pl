@@ -7,11 +7,10 @@
 
 use Test;
 BEGIN { plan tests => 1 };
-use Configfile::Ini;
+use Config::Abstract::Ini;
 ok(1); # If we made it this far, we're ok.
 
 #########################
 
 # Insert your test code below, the Test module is use()ed here so read
 # its man page ( perldoc Test ) for help writing this test script.
-
