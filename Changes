@@ -1,0 +1,9 @@
+Revision history for Perl extension Config::Abstract.
+
+0.09  Wed Jan 29 16:44:38 2003
+	- original version; created from Configfile::Ini, which(luckily) never made it into CPAN
+
+0.10 Thu Jan 30 11:08:23 2003
+	- Updated test.pl so it will pass submission tests and put some content in README and Changes
+	- Removed some obsolete documentation in PODs
+

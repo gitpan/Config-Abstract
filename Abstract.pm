@@ -16,7 +16,7 @@ our %EXPORT_TAGS = ( 'all' => [ qw( ) ] );
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT = qw( );
 
-our $VERSION = '0.09';
+our $VERSION = '0.10';
 
 #
 # ------------------------------------------------------------------------------------------------------- structural methods -----
@@ -222,72 +222,51 @@ Config::Abstract - Perl extension for abstracting configuration files
 =head1 SYNOPSIS
 
  use Config::Abstract;
- my $ini = new Config::Abstract('test.ini');
+ my $ini = new Config::Abstract('test.pl');
 
 =head1 DESCRIPTION
 
- Config::Abstract is the base class for a number of other classes
- created to facilitate use and handling of a variety of different
+ Config::Abstract is the base  class for a  number of  other classes
+ created to facilitate use and  handling of a  variety of  different
+ configuration file formats. It uses the Data::Dumper file format to
+ serialise it self and can be initialise from a file of that  format
  
 =head1 EXAMPLES
 
- We assume the content of the file 'test.ini' to be:
- [myentry]
- ;comment
- thisssetting = that
- thatsetting=this
- ;end of ini
+ We assume the content of the file 'test.pl' to be:
  
- 
- use Config::Abstract;
- my $settingsfile = 'test.ini';
- my $settings = new Config::Abstract($settingsfile);
- 
- # Get all settings
- my %allsettings = $settings->get_all_settings;
- 
- # Get a subsection (called an entry here, but it's 
- # whatever's beneath a [section] header)
- my %entry = $settings->get_entry('myentry');
- 
- # Get a specific setting from an entry
- my $value = $settings->get_entry_setting('myentry',
-                                          'thissetting');
-
- # Get a specific setting from an entry, giving a default
- # to fall back on
- my value = $settings->get_entry_setting('myentry',
-                                         'missingsetting',
-                                         'defaultvalue');
- We can also make use of subentries, with a ini file like
- this:
-
- [book]
- title=A book of chapters
- author=Me, Myself and Irene
-
- [book::chapter1]
- title=The First Chapter, ever
- file=book/chapter1.txt
-
- [book::chapter2]
- title=The Next Chapter, after the First Chapter, ever
- file=book/chapter2.txt
- # btw, you can use unix style comments, too...
- ;end of ini
+  $settings = {
+    'book' => {
+      'chapter1' => {
+        'title' => 'The First Chapter, ever',
+        'file' => 'book/chapter1.txt'
+      },
+      'title' => 'A book of chapters',
+      'chapter2' => {
+        'title' => 'The Next Chapter, after the First Chapter, ever',
+        'file' => 'book/chapter2.txt'
+      },
+      'author' => 'Me, Myself and Irene'
+    }
+  };
 
  use Config::Abstract;
- my $settingsfile = 'test2.ini';
- my $ini = new Config::Abstract($Settingsfile);
+ my $settingsfile = 'test.pl';
+ my $abstract = new Config::Abstract($settingsfile);
  
- my %book = $ini->get_entry('book');
- my %chap1 = $ini->get_entry_setting('book','chapter1');
+ my %book = $abstract->get_entry('book');
+ my %chap1 = $abstract->get_entry_setting('book','chapter1');
  my $chap1title = $chapter1{'title'};
  
- # Want to see the inifile?
+ # Want to see the file?
  # If you can live without comments and blank lines ;),
  # try this:
- print("My inifile looks like this:\n$ini\nCool, huh?\n");
+ print("My abstract file looks like this:\n$abstract\nCool, huh?\n");
+ 
+ # We can also create an ini file from it
+ # A bit crude, but it does the job
+ bless($abstract,'Config::Abstract::Ini');
+ print($abstract);
 
 =head1 METHODS
 
@@ -315,15 +294,9 @@ Fill the entry ENTRYNAME with data from ENTRYHASH
 
 Set the setting ENTRYNAME,SETTINGSNAME to VALUE
 
-=head2 UTILITY METHODS
-
-=item expand_tilde STRINGTOEXPAND
-
-Does normal tilde expansion if the environment variable $HOME is set
-
 =head1 COPYRIGHT
 
-Copyright 2001 Eddie Olsson.
+Copyright 2003 Eddie Olsson.
 
  This library is free software; you can redistribute it
  and/or modify it under the same terms as Perl itself.

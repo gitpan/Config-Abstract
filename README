@@ -1,0 +1,29 @@
+Config/Abstract version 0.10
+============================
+
+Config::Abstract is not supposed to be used directly, but rather as
+the base class for a bundle of file format specific classes sharing
+the internal representation of the file data that lets us perform a
+bunch of operations on that data, such as converting files from one
+format to any other format, creating diffs between config  files of
+different formats, patching files based on keys-values, rather than
+line numbers and so on.
+
+INSTALLATION
+
+To install this module type the following:
+
+   perl Makefile.PL
+   make
+   make test
+   make install
+
+DEPENDENCIES
+
+This module requires these other modules and libraries:
+
+Data::Dumper
+
+COPYRIGHT AND LICENCE
+
+Copyright (C) 2003 Eddie Olsson <ewt@avajadi.org>

@@ -14,9 +14,7 @@ our %EXPORT_TAGS = ( 'all' => [ qw( ) ] );
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT = qw( );
 
-our $VERSION = '0.09';
-
-# Preloaded methods go here.
+our $VERSION = '0.10';
 
 #
 # ------------------------------------------------------------------------------------------------------- structural methods -----
@@ -125,9 +123,7 @@ sub _parse_settings_file{
 
 # We provide a DESTROY method so that the autoloader
 # doesn't bother trying to find it.
-sub DESTROY { 
-	print STDERR ("Destroying Config::Abstract::Ini\n"); #DEBUG!!!
-}
+sub DESTROY { }
 
 # Autoload methods go after =cut, and are processed by the autosplit program.
 
@@ -243,9 +239,14 @@ Fill the entry ENTRYNAME with data from ENTRYHASH
 
 Set the setting ENTRYNAME,SETTINGSNAME to VALUE
 
+=head1 BUGS
+
+* Comments have to be on their own lines, end of line comments won't work properly
+* Serialisation does not take original line ordering into consideration, so comments may end up far from what they're supposed to document
+
 =head1 COPYRIGHT
 
-Copyright 2001 Eddie Olsson.
+Copyright 2003 Eddie Olsson.
 
  This library is free software; you can redistribute it
  and/or modify it under the same terms as Perl itself.
