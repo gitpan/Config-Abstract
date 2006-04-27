@@ -14,7 +14,7 @@ our %EXPORT_TAGS = ( 'all' => [ qw( ) ] );
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT = qw( );
 
-our $VERSION = '0.10';
+our $VERSION = '0.13';
 
 #
 # ------------------------------------------------------------------------------------------------------- structural methods -----
@@ -95,9 +95,8 @@ sub _parse_settings_file{
 		($_) = split(/[;#]/,$_);
 		#Skip if there's no data
 		next if((! defined($_)) || $_ eq '');
-		
-		/^\s*(.*?)\s*=\s*['"]?(.*)['"]?\s*/ && do {
-			my($key,$val) = ($1,$2);
+		/^\s*(.*?)\s*=\s*(['"]|)(.*)\2\s*/ && do {	
+			my($key,$val) = ($1,$3);
 			next if($key eq '' || $val eq '');
 			if(! defined($subentry) || $subentry =~ /^\s*$/){
 				${$result{$entry}}{$key} = $val;

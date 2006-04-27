@@ -26,3 +26,6 @@ Revision history for Perl extension Config::Abstract.
 	- test.pl in the root directory has been renamed to testdata.pl as that's a more appropriate
 	  name. Same goes for test.ini, which is now called testdata.ini
 	  
+0.13 Thu Apr 27 05:13:24 2006
+	- Fixed broken regexp in Ini::_parse_settings_file, bug reported, with the fix, by Eric Schultz. 
+
