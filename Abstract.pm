@@ -16,7 +16,7 @@ our %EXPORT_TAGS = ( 'all' => [ qw( ) ] );
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT = qw( );
 
-our $VERSION = '0.13';
+our $VERSION = '0.14';
 
 #
 # ------------------------------------------------------------------------------------------------------- structural methods -----
@@ -283,7 +283,7 @@ sub _read_settings{
 
 sub _parse_settings_file{
 	my $settings = {};
-	eval(join(''.@_));
+	eval(join('',@_));
 	return($settings);
 }
 
