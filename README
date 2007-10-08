@@ -1,4 +1,4 @@
-Config/Abstract version 0.14
+Config/Abstract version 0.15
 ============================
 
 Config::Abstract is not supposed to be used directly, but rather as
@@ -42,6 +42,6 @@ to much of this code, even though none of them have contributed
 any actual code, yet :). I especially want to thank James Cohen
 and Aidan Fitzpatrick for being such code freaks.
 
-COPYRIGHT AND LICENCE
+COPYRIGHT AND LICENSE
 
-Copyright (C) 2003 Eddie Olsson <ewt@avajadi.org>
+Copyright (C) 2003-2007 Eddie Olsson <ewt@avajadi.org>

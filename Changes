@@ -1,4 +1,7 @@
 Revision history for Perl extension Config::Abstract.
+0.15 Mon Oct 8 15:56:12 2007
+	- Changed return value of get_entry in array context to always be a list, empty if no matching 
+	  entry exists. bug reported, with suggested fix, by Jean-Michel Vansteene.
 
 0.14 Tue May 22 20:09:16 2007
 	- Typo bug in Config::Abstract::_parse_settings_file. Thanks to Tim Daley for spotting it.
