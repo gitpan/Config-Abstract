@@ -1,4 +1,7 @@
 Revision history for Perl extension Config::Abstract.
+0.16 Mon Jul 7 00:30:34 2008
+	- Fixed broken regexp in _parse_settings_file so that it correctly trims dos line endings.
+
 0.15 Mon Oct 8 15:56:12 2007
 	- Changed return value of get_entry in array context to always be a list, empty if no matching 
 	  entry exists. bug reported, with suggested fix, by Jean-Michel Vansteene.

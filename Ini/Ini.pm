@@ -14,7 +14,7 @@ our %EXPORT_TAGS = ( 'all' => [ qw( ) ] );
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT = qw( );
 
-our $VERSION = '0.14';
+our $VERSION = '0.16';
 
 #
 # ------------------------------------------------------------------------------------------------------- structural methods -----
@@ -89,7 +89,7 @@ sub _parse_settings_file{
 	chomp(@_);
 	foreach(@_){
 		# Get rid of starting/ending whitespace
-		s/^\s*(.*)\s*$/$1/;
+		s/^\s*(.*?)\s*$/$1/;
 		
 		#Delete comments
 		($_) = split(/[;#]/,$_);
